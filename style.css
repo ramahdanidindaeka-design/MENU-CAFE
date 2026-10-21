@@ -1,206 +1,105 @@
-/* ========================================== */
-/* 1. CSS RESET & VARIABEL WARNA             */
-/* ========================================== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --primary-color: #2c221e;   /* Warna teks utama (coklat gelap) */
-  --accent-color: #d4a373;    /* Warna aksen (coklat hangat/gold) */
-  --bg-color: #f9f8f6;        /* Warna latar belakang halaman */
-  --card-bg: #ffffff;         /* Warna latar belakang kartu menu */
-  --text-muted: #7f7f7f;      /* Warna teks sekunder/abu-abu */
-  --radius: 12px;             /* Tingkat kelengkungan sudut (border-radius) */
+  --primary: #2c221e;
+  --accent: #d4a373;
+  --bg: #f9f8f6;
+  --card: #ffffff;
+  --promo-color: #e63946;
+  --radius: 12px;
 }
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-color: var(--bg-color);
-  color: var(--primary-color);
+  background-color: var(--bg);
+  color: var(--primary);
   line-height: 1.6;
+  padding-bottom: 3rem;
 }
 
-/* ========================================== */
-/* 2. HEADER: Identitas Kafe                  */
-/* ========================================== */
 .header {
-  background-color: var(--primary-color);
-  color: #ffffff;
-  text-align: center;
-  padding: 2rem 1rem;
-  border-bottom-left-radius: 24px;
-  border-bottom-right-radius: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
-
-.brand-title {
-  font-size: 1.8rem;
-  font-weight: 700;
-  margin-bottom: 0.3rem;
-  letter-spacing: 0.5px;
-}
-
-.brand-tagline {
-  font-size: 0.9rem;
-  color: #dcd6f7;
-  font-weight: 400;
-}
-
-/* ========================================== */
-/* 3. UTILITY & KONTROL (Pencarian & Filter)  */
-/* ========================================== */
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 1.5rem 1rem;
-}
-
-/* Kotak Pencarian */
-.search-section {
-  margin-bottom: 1.2rem;
-}
-
-#searchInput {
-  width: 100%;
-  padding: 0.8rem 1.2rem;
-  font-size: 0.95rem;
-  border: 1px solid #ddd;
-  border-radius: var(--radius);
-  outline: none;
-  background-color: #fff;
-  transition: all 0.3s ease;
-}
-
-#searchInput:focus {
-  border-color: var(--accent-color);
-  box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2);
-}
-
-/* Tombol Kategori */
-.category-section {
-  display: flex;
-  gap: 0.5rem;
-  overflow-x: auto;
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-  scrollbar-width: none; /* Menyembunyikan scrollbar di Firefox */
-}
-
-.category-section::-webkit-scrollbar {
-  display: none; /* Menyembunyikan scrollbar di Chrome/Safari */
-}
-
-.category-btn {
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  color: var(--primary-color);
-  padding: 0.5rem 1.2rem;
-  font-size: 0.9rem;
-  font-weight: 600;
-  border-radius: 20px;
-  cursor: pointer;
-  white-space: nowrap;
-  transition: all 0.2s ease;
-}
-
-.category-btn:hover {
-  background-color: #f0ede6;
-}
-
-/* Kelas aktif saat kategori dipilih (dikontrol via JS) */
-.category-btn.active {
-  background-color: var(--accent-color);
-  color: #ffffff;
-  border-color: var(--accent-color);
-}
-
-/* ========================================== */
-/* 4. DAFTAR MENU (Menu Grid & Cards)         */
-/* ========================================== */
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1.2rem;
-}
-
-.menu-card {
-  background-color: var(--card-bg);
-  border-radius: var(--radius);
-  overflow: hidden;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  display: flex;
-  flex-direction: column;
-}
-
-.menu-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
-}
-
-.menu-img {
-  width: 100%;
-  height: 160px;
-  object-fit: cover; /* Agar gambar tidak gepeng */
-}
-
-.menu-info {
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-/* Label Kategori kecil di dalam kartu */
-.badge {
-  display: inline-block;
-  font-size: 0.7rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: var(--accent-color);
-  background-color: rgba(212, 163, 115, 0.15);
-  padding: 0.2rem 0.6rem;
-  border-radius: 4px;
-  align-self: flex-start;
-  margin-bottom: 0.5rem;
-}
-
-.menu-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin-bottom: 0.3rem;
-}
-
-.menu-desc {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-  flex-grow: 1; /* Mendorong harga ke bagian bawah kartu secara konsisten */
-}
-
-.menu-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid #f0f0f0;
-  padding-top: 0.7rem;
-}
-
-.menu-price {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-/* ========================================== */
-/* 5. FOOTER                                  */
-/* ========================================== */
-.footer {
+  background-color: var(--primary);
+  color: #fff;
   text-align: center;
   padding: 2rem 1rem 1.5rem;
-  font-size: 0.8rem;
-  color: var(--text-muted);
+  border-bottom-left-radius: 24px;
+  border-bottom-right-radius: 24px;
 }
+
+.brand-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.2rem; }
+.brand-tagline { font-size: 0.85rem; color: #dcd6f7; margin-bottom: 0.8rem; }
+
+/* Bagian Meja Header */
+.table-container-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.table-badge { background-color: var(--accent); color: #fff; font-size: 0.8rem; font-weight: 600; padding: 0.3rem 1rem; border-radius: 20px; }
+.edit-table-btn { background: transparent; border: 1px solid #fff; color: #fff; font-size: 0.75rem; padding: 0.2rem 0.6rem; border-radius: 12px; cursor: pointer; }
+.edit-table-btn:hover { background: rgba(255,255,255,0.1); }
+
+.container { max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem; }
+
+/* Banner Promo */
+.promo-banner {
+  background: linear-gradient(135deg, #e63946, #b71c1c);
+  color: white;
+  padding: 1.2rem;
+  border-radius: var(--radius);
+  margin-bottom: 1.2rem;
+  box-shadow: 0 4px 12px rgba(230, 57, 70, 0.25);
+}
+.promo-tag { background: rgba(255,255,255,0.2); font-size: 0.75rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 4px; }
+.promo-banner h2 { font-size: 1.3rem; margin: 0.3rem 0; }
+.promo-banner p { font-size: 0.85rem; opacity: 0.9; }
+
+.search-section { margin-bottom: 1rem; }
+#searchInput { width: 100%; padding: 0.8rem 1.2rem; font-size: 0.95rem; border: 1px solid #ddd; border-radius: var(--radius); outline: none; }
+#searchInput:focus { border-color: var(--accent); }
+
+.category-section { display: flex; gap: 0.5rem; overflow-x: auto; margin-bottom: 1.5rem; scrollbar-width: none; }
+.category-btn { background: #fff; border: 1px solid #ddd; color: var(--primary); padding: 0.5rem 1.2rem; font-size: 0.9rem; font-weight: 600; border-radius: 20px; cursor: pointer; white-space: nowrap; }
+.category-btn.active { background-color: var(--accent); color: #fff; border-color: var(--accent); }
+
+.menu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+.menu-card { background: var(--card); border-radius: var(--radius); overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.05); display: flex; flex-direction: column; }
+.promo-card { border: 2px solid var(--promo-color); }
+.menu-img { width: 100%; height: 160px; object-fit: cover; }
+.menu-info { padding: 1rem; display: flex; flex-direction: column; flex-grow: 1; }
+.badge-group { display: flex; gap: 0.4rem; margin-bottom: 0.5rem; }
+.badge { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; color: var(--accent); background: rgba(212,163,115,0.15); padding: 0.2rem 0.6rem; border-radius: 4px; align-self: flex-start; }
+.promo-badge { color: white; background: var(--promo-color); }
+.menu-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.3rem; }
+.menu-desc { font-size: 0.85rem; color: #7f7f7f; margin-bottom: 1rem; flex-grow: 1; }
+.menu-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #f0f0f0; padding-top: 0.7rem; }
+.menu-price { font-size: 1rem; font-weight: 700; }
+.add-to-cart-btn { background-color: var(--primary); color: white; border: none; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; border-radius: 8px; cursor: pointer; }
+.add-to-cart-btn:hover { background-color: var(--accent); }
+
+/* Keranjang & Promo Input */
+.cart-section { background: #ffffff; border: 2px dashed var(--accent); border-radius: var(--radius); padding: 1.5rem; }
+.cart-section h2 { font-size: 1.2rem; margin-bottom: 1rem; }
+.cart-items-empty { color: #888; font-size: 0.9rem; font-style: italic; margin-bottom: 1rem; }
+
+.cart-item-row { display: flex; justify-content: space-between; align-items: center; padding: 0.5rem 0; border-bottom: 1px solid #eee; font-size: 0.9rem; }
+.cart-item-info { display: flex; flex-direction: column; }
+.cart-item-name { font-weight: 600; }
+.cart-item-qty { font-size: 0.8rem; color: #7f7f7f; }
+
+/* Input Promo Style */
+.promo-input-group { display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.3rem; }
+.promo-input-group input { flex-grow: 1; padding: 0.5rem 0.8rem; font-size: 0.85rem; border: 1px solid #ddd; border-radius: 8px; outline: none; text-transform: uppercase; }
+.promo-input-group button { background: var(--accent); color: #white; border: none; padding: 0 1rem; font-size: 0.85rem; font-weight: 600; border-radius: 8px; cursor: pointer; }
+.promo-msg { font-size: 0.8rem; margin-bottom: 1rem; font-weight: 600; }
+
+.cart-summary { margin-top: 1rem; border-top: 2px solid #eee; padding-top: 1rem; }
+.subtotal-row, .discount-row { display: flex; justify-content: space-between; font-size: 0.95rem; color: #666; margin-bottom: 0.3rem; }
+.total-row { display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; }
+
+.checkout-btn { width: 100%; background-color: #25d366; color: white; border: none; padding: 0.9rem; font-size: 1rem; font-weight: 700; border-radius: var(--radius); cursor: pointer; }
+.checkout-btn:disabled { background-color: #cccccc; cursor: not-allowed; }
+
+.footer { text-align: center; padding: 2rem 1rem; font-size: 0.8rem; color: #7f7f7f; }
