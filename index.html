@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu Digital, Meja & Promo - Kopi Senja</title>
+  <title>Menu Digital & Pemesanan - Kopi Senja</title>
   <link rel="stylesheet" href="style.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
@@ -15,8 +15,7 @@
       <h1 class="brand-title">Kopi Senja Cafe</h1>
       <p class="brand-tagline">Pindai, Pilih Menu, & Nikmati Promo Special</p>
       
-      <!-- Indikator / Input Nomor Meja -->
-      <div class="table-container-header" id="tableContainerHeader">
+      <div class="table-container-header">
         <span id="tableIndicator" class="table-badge">Nomor Meja: -</span>
         <button class="edit-table-btn" onclick="ubahNomorMeja()">Ganti Meja</button>
       </div>
@@ -34,9 +33,9 @@
       </div>
     </section>
 
-    <!-- PENCARIAN & FILTER -->
+    <!-- PENCARIAN CEPAT & FILTER -->
     <section class="search-section">
-      <input type="text" id="searchInput" placeholder="Cari makanan, minuman, atau promo...">
+      <input type="text" id="searchInput" placeholder="Cari cepat (misal: kentang, ice cream, burger)...">
     </section>
 
     <section class="category-section">
@@ -50,7 +49,7 @@
     <!-- DAFTAR MENU -->
     <section class="menu-grid" id="menuGrid">
 
-      <!-- Menu Promo 1 -->
+      <!-- Promo Buy 1 Get 1 -->
       <article class="menu-card promo-card" data-category="promo minuman">
         <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80" alt="Iced Hazelnut Latte" class="menu-img">
         <div class="menu-info">
@@ -67,7 +66,35 @@
         </div>
       </article>
 
-      <!-- Menu Makanan -->
+      <!-- Makanan: Kentang Goreng (Baru) -->
+      <article class="menu-card" data-category="makanan snack">
+        <img src="https://images.unsplash.com/photo-1573080496219-bb080dd4f877?w=500&q=80" alt="Kentang Goreng Renyah" class="menu-img">
+        <div class="menu-info">
+          <span class="badge">Makanan</span>
+          <h2 class="menu-title">Kentang Goreng Renyah</h2>
+          <p class="menu-desc">French fries gurih dan renyah disajikan dengan saus keju dan sambal.</p>
+          <div class="menu-footer">
+            <span class="menu-price">Rp 18.000</span>
+            <button class="add-to-cart-btn" onclick="tambahKeKeranjang('Kentang Goreng Renyah', 18000)">+ Tambah</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Dessert: Ice Cream (Baru) -->
+      <article class="menu-card" data-category="dessert">
+        <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=500&q=80" alt="Ice Cream Sundae Chocolate" class="menu-img">
+        <div class="menu-info">
+          <span class="badge">Dessert</span>
+          <h2 class="menu-title">Ice Cream Sundae Chocolate</h2>
+          <p class="menu-desc">Es krim vanila lembut dengan saus cokelat lumer dan taburan kacang renyah.</p>
+          <div class="menu-footer">
+            <span class="menu-price">Rp 20.000</span>
+            <button class="add-to-cart-btn" onclick="tambahKeKeranjang('Ice Cream Sundae Chocolate', 20000)">+ Tambah</button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Makanan Utama -->
       <article class="menu-card" data-category="makanan">
         <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80" alt="Burger Keju Special" class="menu-img">
         <div class="menu-info">
@@ -81,7 +108,7 @@
         </div>
       </article>
 
-      <!-- Menu Minuman -->
+      <!-- Minuman -->
       <article class="menu-card" data-category="minuman">
         <img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?w=500&q=80" alt="Americano" class="menu-img">
         <div class="menu-info">
@@ -95,7 +122,7 @@
         </div>
       </article>
 
-      <!-- Menu Dessert -->
+      <!-- Dessert: Croissant -->
       <article class="menu-card" data-category="dessert">
         <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&q=80" alt="Croissant Cokelat" class="menu-img">
         <div class="menu-info">
@@ -111,12 +138,12 @@
 
     </section>
 
-    <!-- PANEL KERANJANG, PROMO & TAGIHAN -->
+    <!-- PANEL PEMESANAN & TOTAL TAGIHAN -->
     <section class="cart-section" id="cartSection">
-      <h2>🛒 Keranjang Pesanan & Tagihan</h2>
+      <h2>🛒 Keranjang Pemesanan</h2>
       <div id="cartItemsList" class="cart-items-empty">Belum ada menu yang dipilih.</div>
       
-      <!-- Bagian Input Kode Promo -->
+      <!-- Input Kode Promo -->
       <div class="promo-input-group">
         <input type="text" id="promoInput" placeholder="Masukkan kode promo (Cth: HEMAT10)">
         <button type="button" onclick="terapkanPromo()">Gunakan</button>
@@ -133,12 +160,12 @@
           <span id="discountPrice">- Rp 0</span>
         </div>
         <div class="total-row">
-          <span>Total Tagihan:</span>
+          <span>Total Pemesanan:</span>
           <span id="totalPrice">Rp 0</span>
         </div>
         
         <button class="checkout-btn" id="checkoutBtn" onclick="kirimPesananWhatsApp()" disabled>
-          Kirim Pesanan ke WhatsApp 🚀
+          Proses & Kirim Pemesanan 🚀
         </button>
       </div>
     </section>
