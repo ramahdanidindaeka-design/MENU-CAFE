@@ -1,16 +1,14 @@
 // ========================================== */
-// 1. PENGELOLAAN NOMOR MEJA (URL & Popup)    */
+// 1. PENGELOLAAN NOMOR MEJA                   */
 // ========================================== */
 const urlParams = new URLSearchParams(window.location.search);
 let nomorMeja = urlParams.get('meja');
 
-// Jika tidak ada nomor meja di URL, tanyakan lewat popup prompt
 if (!nomorMeja) {
   nomorMeja = prompt("Masukkan Nomor Meja Anda (Contoh: 5):") || "Takeaway / Belum diatur";
 }
 document.getElementById('tableIndicator').textContent = `Nomor Meja: ${nomorMeja}`;
 
-// Fungsi tombol "Ganti Meja" jika pelanggan salah input
 function ubahNomorMeja() {
   const mejaBaru = prompt("Masukkan ulang nomor meja Anda:", nomorMeja);
   if (mejaBaru) {
@@ -19,12 +17,11 @@ function ubahNomorMeja() {
   }
 }
 
-
 // ========================================== */
-// 2. SISTEM KERANJANG & KODE PROMO (DISKON)   */
+// 2. SISTEM KERANJANG & TOTAL PEMESANAN      */
 // ========================================== */
 let keranjang = [];
-let diskonPersen = 0; // Persentase diskon aktif
+let diskonPersen = 0;
 let namaKodePromo = "";
 
 function tambahKeKeranjang(namaMenu, harga) {
@@ -39,25 +36,24 @@ function tambahKeKeranjang(namaMenu, harga) {
   updateTampilanKeranjang();
 }
 
-// Fungsi untuk mengecek dan menerapkan kode promo
 function terapkanPromo() {
   const kodeInput = document.getElementById('promoInput').value.trim().toUpperCase();
   const promoMsg = document.getElementById('promoMessage');
 
   if (kodeInput === "HEMAT10") {
-    diskonPersen = 10; // Diskon 10%
+    diskonPersen = 10;
     namaKodePromo = "HEMAT10 (10%)";
-    promoMsg.textContent = "🎉 Berhasil! Diskon 10% diterapkan.";
+    promoMsg.textContent = "🎉 Diskon 10% berhasil diterapkan!";
     promoMsg.style.color = "#2a9d8f";
   } else if (kodeInput === "KOPI2026") {
-    diskonPersen = 20; // Diskon 20%
+    diskonPersen = 20;
     namaKodePromo = "KOPI2026 (20%)";
-    promoMsg.textContent = "🔥 Berhasil! Diskon Spesial 20% diterapkan.";
+    promoMsg.textContent = "🔥 Diskon Spesial 20% berhasil diterapkan!";
     promoMsg.style.color = "#2a9d8f";
   } else {
     diskonPersen = 0;
     namaKodePromo = "";
-    promoMsg.textContent = "❌ Kode promo tidak valid atau kedaluwarsa.";
+    promoMsg.textContent = "❌ Kode promo tidak berlaku.";
     promoMsg.style.color = "#e63946";
   }
 
@@ -104,11 +100,9 @@ function updateTampilanKeranjang() {
     cartItemsList.appendChild(row);
   });
 
-  // Hitung Diskon & Total Akhir
   const jumlahDiskon = (subtotal * diskonPersen) / 100;
   const totalTagihan = subtotal - jumlahDiskon;
 
-  // Tampilkan baris subtotal dan diskon jika ada promo aktif
   if (diskonPersen > 0) {
     subtotalRow.style.display = 'flex';
     discountRow.style.display = 'flex';
@@ -123,12 +117,11 @@ function updateTampilanKeranjang() {
   checkoutBtn.disabled = false;
 }
 
-
 // ========================================== */
-// 3. KIRIM PESANAN KE WHATSAPP                */
+// 3. PROSES & KIRIM PEMESANAN VIA WHATSAPP    */
 // ========================================== */
 function kirimPesananWhatsApp() {
-  const nomorAdminWhatsApp = "6281234567890"; // Ganti nomor WhatsApp kasir kafe
+  const nomorAdminWhatsApp = "6281234567890"; // Ganti nomor kasir
 
   let rincianPesanan = "";
   let subtotal = 0;
@@ -146,29 +139,32 @@ function kirimPesananWhatsApp() {
 
   const pesan = `Halo Kak, saya ingin memesan makanan/minuman:\n\n` +
                 `📍 *Nomor Meja:* ${nomorMeja}\n\n` +
-                `📋 *Daftar Pesanan:*\n${rincianPesanan}\n` +
+                `📋 *Daftar Pemesanan:*\n${rincianPesanan}\n` +
                 infoPromoText +
-                `💰 *Total Tagihan:* *Rp ${totalTagihan.toLocaleString('id-ID')}*\n\n` +
+                `💰 *Total Pemesanan:* *Rp ${totalTagihan.toLocaleString('id-ID')}*\n\n` +
                 `Mohon segera diproses ya, terima kasih!`;
 
   const urlWhatsApp = `https://wa.me/${nomorAdminWhatsApp}?text=${encodeURIComponent(pesan)}`;
   window.open(urlWhatsApp, '_blank');
 }
 
-
 // ========================================== */
-// 4. PENCARIAN & FILTER KATEGORI              */
+// 4. FITUR PENCARIAN CEPAT & FILTER          */
 // ========================================== */
 const searchInput = document.getElementById('searchInput');
 const categoryButtons = document.querySelectorAll('.category-btn');
 const menuCards = document.querySelectorAll('.menu-card');
 
+// Pencarian cepat yang memeriksa judul, deskripsi, dan kategori
 searchInput.addEventListener('input', (e) => {
-  const keyword = e.target.value.toLowerCase();
+  const keyword = e.target.value.toLowerCase().trim();
+
   menuCards.forEach((card) => {
     const title = card.querySelector('.menu-title').textContent.toLowerCase();
     const desc = card.querySelector('.menu-desc').textContent.toLowerCase();
-    if (title.includes(keyword) || desc.includes(keyword)) {
+    const category = card.getAttribute('data-category').toLowerCase();
+
+    if (title.includes(keyword) || desc.includes(keyword) || category.includes(keyword)) {
       card.style.display = 'flex';
     } else {
       card.style.display = 'none';
