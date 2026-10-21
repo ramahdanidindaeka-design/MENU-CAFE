@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <!-- Metadata Dasar -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Menu Digital - Kafe Masa Kini</title>
+
+  <!-- Hubungkan ke File CSS Eksternal -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Font Tambahan dari Google Fonts (Opsional) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- ========================================== -->
+  <!-- HEADER: Identitas Kafe                    -->
+  <!-- ========================================== -->
+  <header class="header">
+    <div class="header-container">
+      <h1 class="brand-title">Kopi Senja Cafe</h1>
+      <p class="brand-tagline">Pindai, Pilih, & Nikmati Hidangan Favoritmu</p>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- MAIN CONTENT: Kontrol Utilitas & Daftar Menu -->
+  <!-- ========================================== -->
+  <main class="container">
+
+    <!-- 1. Kolom Pencarian Menu (Real-time Search) -->
+    <section class="search-section">
+      <input 
+        type="text" 
+        id="searchInput" 
+        placeholder="Cari makanan atau minuman..." 
+        aria-label="Cari Menu"
+      >
+    </section>
+
+    <!-- 2. Tombol Navigasi Filter Kategori -->
+    <section class="category-section">
+      <button class="category-btn active" data-category="semua">Semua</button>
+      <button class="category-btn" data-category="makanan">Makanan</button>
+      <button class="category-btn" data-category="minuman">Minuman</button>
+      <button class="category-btn" data-category="dessert">Dessert</button>
+    </section>
+
+    <!-- 3. Daftar Kartu Menu (Menu Grid) -->
+    <section class="menu-grid" id="menuGrid">
+
+      <!-- Kartu Menu 1: Makanan -->
+      <article class="menu-card" data-category="makanan">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&q=80" alt="Burger Keju Special" class="menu-img">
+        <div class="menu-info">
+          <span class="badge">Makanan</span>
+          <h2 class="menu-title">Burger Keju Special</h2>
+          <p class="menu-desc">Daging sapi pilihan dengan lelehan keju cheddar, selada segar, dan saus rahasia.</p>
+          <div class="menu-footer">
+            <span class="menu-price">Rp 35.000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kartu Menu 2: Minuman -->
+      <article class="menu-card" data-category="minuman">
+        <img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?w=500&q=80" alt="Iced Hazelnut Latte" class="menu-img">
+        <div class="menu-info">
+          <span class="badge">Minuman</span>
+          <h2 class="menu-title">Iced Hazelnut Latte</h2>
+          <p class="menu-desc">Espresso khas arabika dipadu dengan susu segar dan sirup hazelnut yang gurih.</p>
+          <div class="menu-footer">
+            <span class="menu-price">Rp 28.000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kartu Menu 3: Makanan -->
+      <article class="menu-card" data-category="makanan">
+        <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=500&q=80" alt="Ramen Ayam Pedas" class="menu-img">
+        <div class="menu-info">
+          <span class="badge">Makanan</span>
+          <h2 class="menu-title">Ramen Ayam Pedas</h2>
+          <p class="menu-desc">Mie ramen Jepang dengan kuah kaldu pedas, potongan ayam chashu, dan telur rebus.</p>
+          <div class="menu-footer">
+            <span class="menu-price">Rp 38.000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kartu Menu 4: Dessert -->
+      <article class="menu-card" data-category="dessert">
+        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=500&q=80" alt="Croissant Cokelat" class="menu-img">
+        <div class="menu-info">
+          <span class="badge">Dessert</span>
+          <h2 class="menu-title">Croissant Cokelat</h2>
+          <p class="menu-desc">Roti pastri renyah bermentega tinggi dengan isian cokelat lumer di dalamnya.</p>
+          <div class="menu-footer">
+            <span class="menu-price">Rp 22.000</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- Kartu Menu 5: Minuman -->
+      <article class="menu-card" data-category="minuman">
+        <img src="https://images.unsplash.com/photo-1556881286-fc6915169721?w=500&q=80" alt="Matcha Green Tea Ice" class="menu-img">
+        <div class="menu-info">
+          <span class="badge">Minuman</span>
+          <h2 class="menu-title">Matcha Green Tea Ice</h2>
+          <p class="menu-desc">Teh hijau Uji Matcha asli dari Jepang disajikan dingin dengan susumu segar.</p>
+          <div class="menu-footer">
+            <span class="menu-price">Rp 26.000</span>
+          </div>
+        </div>
+      </article>
+
+    </section>
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FOOTER: Informasi Tambahan                -->
+  <!-- ========================================== -->
+  <footer class="footer">
+    <p>&copy; 2026 Kopi Senja. Dibuat oleh Tim Technopreneur SMK.</p>
+  </footer>
+
+  <!-- Hubungkan ke File JavaScript Eksternal -->
+  <script src="script.js"></script>
+</body>
+</html>
