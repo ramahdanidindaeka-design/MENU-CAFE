@@ -29,7 +29,6 @@ body {
 .brand-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 0.2rem; }
 .brand-tagline { font-size: 0.85rem; color: #dcd6f7; margin-bottom: 0.8rem; }
 
-/* Bagian Meja Header */
 .table-container-header {
   display: flex;
   justify-content: center;
@@ -58,7 +57,7 @@ body {
 
 .search-section { margin-bottom: 1rem; }
 #searchInput { width: 100%; padding: 0.8rem 1.2rem; font-size: 0.95rem; border: 1px solid #ddd; border-radius: var(--radius); outline: none; }
-#searchInput:focus { border-color: var(--accent); }
+#searchInput:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.2); }
 
 .category-section { display: flex; gap: 0.5rem; overflow-x: auto; margin-bottom: 1.5rem; scrollbar-width: none; }
 .category-btn { background: #fff; border: 1px solid #ddd; color: var(--primary); padding: 0.5rem 1.2rem; font-size: 0.9rem; font-weight: 600; border-radius: 20px; cursor: pointer; white-space: nowrap; }
@@ -79,7 +78,7 @@ body {
 .add-to-cart-btn { background-color: var(--primary); color: white; border: none; padding: 0.5rem 1rem; font-size: 0.85rem; font-weight: 600; border-radius: 8px; cursor: pointer; }
 .add-to-cart-btn:hover { background-color: var(--accent); }
 
-/* Keranjang & Promo Input */
+/* Panel Pemesanan & Tagihan */
 .cart-section { background: #ffffff; border: 2px dashed var(--accent); border-radius: var(--radius); padding: 1.5rem; }
 .cart-section h2 { font-size: 1.2rem; margin-bottom: 1rem; }
 .cart-items-empty { color: #888; font-size: 0.9rem; font-style: italic; margin-bottom: 1rem; }
@@ -89,10 +88,9 @@ body {
 .cart-item-name { font-weight: 600; }
 .cart-item-qty { font-size: 0.8rem; color: #7f7f7f; }
 
-/* Input Promo Style */
 .promo-input-group { display: flex; gap: 0.5rem; margin-top: 1rem; margin-bottom: 0.3rem; }
 .promo-input-group input { flex-grow: 1; padding: 0.5rem 0.8rem; font-size: 0.85rem; border: 1px solid #ddd; border-radius: 8px; outline: none; text-transform: uppercase; }
-.promo-input-group button { background: var(--accent); color: #white; border: none; padding: 0 1rem; font-size: 0.85rem; font-weight: 600; border-radius: 8px; cursor: pointer; }
+.promo-input-group button { background: var(--accent); color: white; border: none; padding: 0 1rem; font-size: 0.85rem; font-weight: 600; border-radius: 8px; cursor: pointer; }
 .promo-msg { font-size: 0.8rem; margin-bottom: 1rem; font-weight: 600; }
 
 .cart-summary { margin-top: 1rem; border-top: 2px solid #eee; padding-top: 1rem; }
