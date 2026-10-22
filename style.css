@@ -1,201 +1,344 @@
-/* --- PENGATURAN DASAR (RESET) --- */
+/* --- 1. PENGATURAN DASAR & VARIABEL WARNA --- */
+:root {
+    --primary-color: #6F4E37; /* Warna Kopi / Cokelat */
+    --secondary-color: #D2B48C; /* Tan / Cokelat Muda */
+    --bg-color: #F9F6F0; /* Putih Tulang / Krem Hangat */
+    --card-bg: #FFFFFF;
+    --text-main: #333333;
+    --text-muted: #777777;
+    --accent: #E07A5F;
+    --radius: 12px;
+}
+
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
-  background-color: #f4f1ea;
-  color: #333;
-  padding-bottom: 50px;
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    padding-bottom: 100px; /* Ruang agar tidak tertutup keranjang melayang */
 }
 
-/* --- HEADER / BAGIAN ATAS --- */
-header {
-  background-color: #4a2c2a;
-  color: white;
-  text-align: center;
-  padding: 25px 15px;
+/* --- 2. HEADER --- */
+.header {
+    background: linear-gradient(135deg, var(--primary-color), #4A3525);
+    color: white;
+    padding: 24px 16px;
+    text-align: center;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
-  font-size: 1.8rem;
-  margin-bottom: 5px;
+.brand-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 4px;
 }
 
-header p {
-  font-size: 0.95rem;
-  color: #dcd6d0;
+.brand-subtitle {
+    font-size: 0.85rem;
+    opacity: 0.9;
 }
 
-/* --- KONTAINER UTAMA --- */
-.container {
-  max-width: 600px;
-  margin: 20px auto;
-  padding: 0 15px;
+/* --- 3. KONTROL (PENCARIAN & FILTER) --- */
+.controls-section {
+    padding: 16px;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-h2 {
-  font-size: 1.3rem;
-  margin-bottom: 15px;
-  color: #4a2c2a;
+.search-box input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #ddd;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    outline: none;
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    transition: border-color 0.2s;
 }
 
-/* --- TOMBOL FILTER KATEGORI --- */
-.category-filter {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
-  overflow-x: auto;
-  padding-bottom: 5px;
+.search-box input:focus {
+    border-color: var(--primary-color);
+}
+
+.category-buttons {
+    display: flex;
+    gap: 8px;
+    overflow-x: auto;
+    padding-top: 12px;
+    padding-bottom: 4px;
+    scrollbar-width: none; /* Hilangkan scrollbar di Firefox */
+}
+
+.category-buttons::-webkit-scrollbar {
+    display: none; /* Hilangkan scrollbar di Chrome/Safari */
 }
 
 .btn-filter {
-  background-color: #fff;
-  border: 1px solid #4a2c2a;
-  color: #4a2c2a;
-  padding: 8px 16px;
-  border-radius: 20px;
-  cursor: pointer;
-  font-weight: 600;
-  white-space: nowrap;
-  transition: all 0.3s ease;
+    background-color: var(--card-bg);
+    border: 1px solid #ddd;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s;
+    color: var(--text-muted);
 }
 
-.btn-filter.active, .btn-filter:hover {
-  background-color: #4a2c2a;
-  color: white;
+.btn-filter.active {
+    background-color: var(--primary-color);
+    color: white;
+    border-color: var(--primary-color);
+    font-weight: 500;
 }
 
-/* --- DAFTAR MENU & KARTU MENU --- */
-.menu-list {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-bottom: 30px;
-  max-height: 450px; /* Batasi tinggi agar bisa di-scroll jika menu banyak */
-  overflow-y: auto;
-  padding-right: 5px;
+/* --- 4. DAFTAR KARTU MENU (GRID) --- */
+.menu-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 0 16px;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom di HP */
+    gap: 12px;
+}
+
+@media (min-width: 500px) {
+    .menu-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 kolom jika layar agak besar */
+    }
 }
 
 .menu-card {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    background-color: var(--card-bg);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: transform 0.2s;
 }
 
-.menu-info h3 {
-  font-size: 1rem;
-  color: #2c3e50;
+.menu-card:active {
+    transform: scale(0.98);
 }
 
-.menu-info p {
-  color: #e67e22;
-  font-weight: bold;
-  font-size: 0.95rem;
-  margin-top: 4px;
+.menu-img-container {
+    width: 100%;
+    height: 120px;
+    background-color: #eee;
+    position: relative;
+}
+
+.menu-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.menu-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: var(--accent);
+    color: white;
+    font-size: 0.65rem;
+    padding: 3px 8px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.menu-info {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.menu-name {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: var(--text-main);
+    line-height: 1.2;
+}
+
+.menu-price {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 8px;
 }
 
 .btn-add {
-  background-color: #27ae60;
-  color: white;
-  border: none;
-  padding: 8px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.85rem;
-  transition: background-color 0.2s;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 6px 0;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    transition: background 0.2s;
 }
 
 .btn-add:hover {
-  background-color: #219150;
+    background-color: #553925;
 }
 
-/* --- BAGIAN KERANJANG & PROMO --- */
-.cart-section {
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+.btn-add:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
-.cart-list {
-  list-style: none;
-  margin-bottom: 15px;
-  max-height: 200px;
-  overflow-y: auto;
+/* --- 5. KERANJANG MELAYANG (CART BAR) --- */
+.cart-bar {
+    position: fixed;
+    bottom: 16px;
+    left: 16px;
+    right: 16px;
+    max-width: 568px;
+    margin: 0 auto;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 20px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(111, 78, 55, 0.4);
+    z-index: 99;
+    transition: transform 0.3s ease;
 }
 
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px dashed #eee;
-  font-size: 0.95rem;
+.cart-bar.hidden {
+    transform: translateY(150%);
 }
 
-.empty-cart {
-  color: #888;
-  font-style: italic;
-  text-align: center;
-  padding: 10px 0;
+.cart-info {
+    display: flex;
+    flex-direction: column;
 }
 
-/* --- KODE PROMO --- */
-.promo-section {
-  display: flex;
-  gap: 10px;
-  margin: 15px 0 5px 0;
+#cartCount {
+    font-size: 0.75rem;
+    opacity: 0.9;
 }
 
-.promo-section input {
-  flex: 1;
-  padding: 9px 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 0.9rem;
+#cartTotal {
+    font-size: 0.95rem;
+    font-weight: 700;
 }
 
-.promo-section button {
-  background-color: #2980b9;
-  color: white;
-  border: none;
-  padding: 9px 14px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: bold;
-  font-size: 0.9rem;
+.btn-cart {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
 }
 
-.promo-section button:hover {
-  background-color: #2471a3;
+/* --- 6. MODAL RINGKASAN PESANAN --- */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: flex-end; /* Muncul dari bawah ala aplikasi mobile */
+    z-index: 100;
+    transition: opacity 0.3s ease;
 }
 
-.promo-msg {
-  font-size: 0.85rem;
-  margin-bottom: 15px;
-  font-weight: 500;
+.modal.hidden {
+    display: none;
 }
 
-/* --- TOTAL PEMBAYARAN --- */
-.cart-total {
-  text-align: right;
-  border-top: 2px solid #4a2c2a;
-  padding-top: 12px;
-  color: #2c3e50;
+.modal-content {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 600px;
+    max-height: 80vh;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    padding: 20px;
+    overflow-y: auto;
+    position: relative;
+    animation: slideUp 0.3s ease;
 }
 
-.cart-total h3 {
-  font-size: 1.1rem;
+@keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
 }
 
-.cart-total span {
-  color: #c0392b;
+.close-btn {
+    position: absolute;
+    top: 16px;
+    right: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: var(--text-muted);
+}
+
+.modal-content h2 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+}
+
+.cart-items-list {
+    margin-bottom: 16px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.cart-item-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+    font-size: 0.85rem;
+}
+
+.modal-summary {
+    margin: 12px 0;
+    font-size: 0.95rem;
+    text-align: right;
+}
+
+.btn-whatsapp {
+    width: 100%;
+    background-color: #25D366; /* Warna khas WhatsApp */
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: var(--radius);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
 }
