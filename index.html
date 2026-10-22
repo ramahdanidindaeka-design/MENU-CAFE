@@ -1,59 +1,75 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>E-Menu Kafe Interaktif</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Digital - Kafe Kita</title>
+    <!-- Menghubungkan ke file CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Menggunakan font Google (Poppins) agar tampilan lebih modern -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-  <!-- Header / Judul Kafe -->
-  <header>
-    <h1>☕ Kafe Kopi Kita</h1>
-    <p>Pilih menu favoritmu & nikmati kemudahan pesan secara online!</p>
-  </header>
+    <!-- 1. HEADER / NAVBAR -->
+    <header class="header">
+        <div class="logo-container">
+            <h1 class="brand-title">☕ Kafe Kita</h1>
+            <p class="brand-subtitle">Silakan pilih menu favoritmu!</p>
+        </div>
+    </header>
 
-  <main class="container">
-    
-    <!-- Tombol Filter Kategori -->
-    <div class="category-filter">
-      <button class="btn-filter active" onclick="filterMenu('semua')">Semua</button>
-      <button class="btn-filter" onclick="filterMenu('Makanan')">🍔 Makanan</button>
-      <button class="btn-filter" onclick="filterMenu('Minuman')">🥤 Minuman</button>
+    <!-- 2. PENCARIAN DAN FILTER -->
+    <section class="controls-section">
+        <!-- Kolom Cari Menu -->
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Cari makanan atau minuman...">
+        </div>
+
+        <!-- Tombol Filter Kategori -->
+        <div class="category-buttons">
+            <button class="btn-filter active" data-category="semua">Semua</button>
+            <button class="btn-filter" data-category="makanan">Makanan</button>
+            <button class="btn-filter" data-category="minuman">Minuman</button>
+            <button class="btn-filter" data-category="dessert">Dessert</button>
+        </div>
+    </section>
+
+    <!-- 3. DAFTAR MENU (Akan diisi dinamis oleh JavaScript) -->
+    <main class="menu-container">
+        <div id="menuGrid" class="menu-grid">
+            <!-- Kartu menu akan muncul di sini via script.js -->
+        </div>
+    </main>
+
+    <!-- 4. RINGKASAN PESANAN (KERANJANG MELAYANG) -->
+    <div id="cartBar" class="cart-bar hidden">
+        <div class="cart-info">
+            <span id="cartCount">0 Pesanan</span>
+            <span id="cartTotal">Rp 0</span>
+        </div>
+        <button id="btnViewCart" class="btn-cart">Lihat Ringkasan</button>
     </div>
 
-    <!-- Container Daftar 100 Menu -->
-    <section>
-      <h2>Daftar Menu</h2>
-      <div class="menu-list" id="menu-container">
-        <!-- Kartu menu akan dirender secara otomatis oleh JavaScript -->
-      </div>
-    </section>
+    <!-- 5. MODAL DETAIL PESANAN -->
+    <div id="cartModal" class="modal hidden">
+        <div class="modal-content">
+            <span id="btnCloseModal" class="close-btn">&times;</span>
+            <h2>Ringkasan Pesanan</h2>
+            <div id="cartItemsList" class="cart-items-list">
+                <!-- Daftar item yang dipilih akan muncul di sini -->
+            </div>
+            <hr>
+            <div class="modal-summary">
+                <p>Total Bayar: <strong id="modalTotal">Rp 0</strong></p>
+            </div>
+            <button id="btnOrderWA" class="btn-whatsapp">
+                📱 Tunjukkan / Kirim Pesanan
+            </button>
+        </div>
+    </div>
 
-    <!-- Ringkasan Keranjang Pesanan -->
-    <section class="cart-section">
-      <h2>🛒 Keranjang Pesanan</h2>
-      
-      <ul id="cart-list" class="cart-list">
-        <li class="empty-cart">Keranjang masih kosong</li>
-      </ul>
-      
-      <!-- Input Kode Promo Diskon -->
-      <div class="promo-section">
-        <input type="text" id="promo-code" placeholder="Masukkan kode promo (misal: HEMAT10)">
-        <button onclick="applyDiscount()">Gunakan</button>
-      </div>
-      <p id="promo-message" class="promo-msg"></p>
-
-      <!-- Total Pembayaran -->
-      <div class="cart-total">
-        <h3>Total Pembayaran: <span id="total-price">Rp 0</span></h3>
-      </div>
-    </section>
-
-  </main>
-
-  <script src="script.js"></script>
+    <!-- Menghubungkan ke file JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
